@@ -49,6 +49,10 @@ kotlin {
 android {
     namespace = findProperty("app.namespace").toString()
     compileSdk = findProperty("android.compileSdk").toString().toInt()
+    
+    defaultConfig {
+        minSdk = findProperty("android.minSdk").toString().toInt()
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
