@@ -17,6 +17,16 @@ kotlin {
     jvm() // KotlinJvmTarget -> добится возможность создавать src дериктории: src/commonMain... (для всех платформ) и src/jvmMain.. (только для JVM-платформы).
     androidTarget()
 
+    listOf(
+        iosArm64(), // таргет для реального устройства
+        iosX64(), // эмулятор на Intel (?)
+        iosSimulatorArm64() // эмулятор на M1
+    ).forEach { iosTarget -> // конфигурирование таргетов:
+        iosTarget.binaries.framework {
+            baseName = "shared"
+        }
+    }
+
     sourceSets {
         commonMain {// подключаем зависимости к таргету commonMain (а код из commonMain будет доступен на всех платформах).
             dependencies {
