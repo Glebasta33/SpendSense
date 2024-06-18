@@ -3,7 +3,9 @@
 
 
     <application
-        android:label="SpendSense">
+        android:label="SpendSense"
+        android:theme="@style/AppTheme"
+        >
 
         <activity android:name=".RootActivity"
             android:exported="true">
