@@ -2,6 +2,7 @@ package com.example.spendsense.settings.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,7 +23,7 @@ import com.example.spendsense.common.ui.AppThemeProvider
 import com.example.spendsense.settings.SettingsViewModel
 
 @Composable
-fun SettingsScreen(
+fun BoxScope.SettingsScreen(
     viewModel: SettingsViewModel
 ) {
 
@@ -31,7 +32,7 @@ fun SettingsScreen(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().align(Alignment.Center)
     ) {
         Card(
             modifier = Modifier.padding(16.dp).fillMaxWidth(),

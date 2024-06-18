@@ -1,4 +1,4 @@
-package com.example.spendsense.root
+package com.example.spendsense.root.model
 
 import com.example.spendsense.base.BaseViewState
 import com.example.spendsense.common.ui.AppPrefs
@@ -7,7 +7,8 @@ class RootContract {
 
     data class State(
         val themeIsDark: Boolean,
-        val firstDayIsMonday: Boolean
+        val firstDayIsMonday: Boolean,
+        val selectedTab: AppTab
     ) : BaseViewState {
 
         val appPrefs: AppPrefs
@@ -16,7 +17,8 @@ class RootContract {
         companion object {
             val NONE = State(
                 themeIsDark = true,
-                firstDayIsMonday = true
+                firstDayIsMonday = true,
+                selectedTab = AppTab.Events
             )
         }
     }
