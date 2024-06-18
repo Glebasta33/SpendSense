@@ -1,6 +1,6 @@
 package com.example.spendsense.platform
 
-expect class DeviceInfo {
+expect class DeviceInfo() {
     val osName: String
     val osVersion: String
     val model: String

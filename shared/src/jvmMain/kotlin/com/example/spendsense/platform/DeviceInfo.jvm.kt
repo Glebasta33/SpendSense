@@ -1,6 +1,6 @@
 package com.example.spendsense.platform
 
-actual class DeviceInfo {
+actual class DeviceInfo actual constructor() {
     actual val osName: String = System.getProperty("os.name") ?: "Desktop"
     actual val osVersion: String = System.getProperty("os.version") ?: "unknown version"
     actual val model: String = "Desktop"
