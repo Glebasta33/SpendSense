@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.moko.res)
 }
 
 // Плагин KMM добавляет в DSL build.gradle.kts targets и source sets.
@@ -28,22 +28,45 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {// подключаем зависимости к таргету commonMain (а код из commonMain будет доступен на всех платформах).
+        val commonMain by getting {// подключаем зависимости к таргету commonMain (а код из commonMain будет доступен на всех платформах).
             dependencies {
                 implementation(compose.foundation)
                 implementation(compose.runtime)
                 implementation(compose.ui)
                 implementation(compose.material)
+
+                //Resources
+                api(libs.resources.core)
+                api(libs.resources.compose) // for compose multiplatform
             }
         }
 
+        androidMain {
+            dependsOn(commonMain)
+        }
+
         jvmMain {
+            dependsOn(commonMain)
             dependencies {
                 // api - делает зависимость транзитивной, т.е. доступ к этой зависимости будет у модуля, у которого есть зависимость на shared
                 api(compose.desktop.currentOs)
             }
         }
+
+        val iosArm64Main by getting
+        val iosX64Main by getting
+        val iosSimulatorArm64Main by getting
+        iosMain {
+            dependsOn(commonMain)
+            iosArm64Main.dependsOn(this)
+            iosX64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
     }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.example.spendsense"
 }
 
 android {

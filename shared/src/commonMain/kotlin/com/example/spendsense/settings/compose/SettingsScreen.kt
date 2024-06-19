@@ -21,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.spendsense.common.ui.AppThemeProvider
 import com.example.spendsense.settings.SettingsViewModel
+import dev.icerock.moko.resources.compose.stringResource
+import com.example.spendsense.MR
 
 @Composable
 fun BoxScope.SettingsScreen(
@@ -54,7 +56,7 @@ fun BoxScope.SettingsScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                "Dark theme",
+                stringResource(MR.strings.dark_theme),
                 modifier = Modifier.weight(1f),
                 color = AppThemeProvider.colors.onSurface
             )
