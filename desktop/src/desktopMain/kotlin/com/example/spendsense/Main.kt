@@ -5,6 +5,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.example.spendsense.root.RootViewModel
 import com.example.spendsense.root.compose.RootScreen
 
 fun main() {
@@ -18,7 +19,7 @@ fun main() {
             state = state,
             title = "Spend Sense"
         ) {
-            RootScreen()
+            RootScreen(RootViewModel())
         }
     }
 }
