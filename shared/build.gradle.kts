@@ -30,6 +30,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {// подключаем зависимости к таргету commonMain (а код из commonMain будет доступен на всех платформах).
             dependencies {
+                //Compose
                 implementation(compose.foundation)
                 implementation(compose.runtime)
                 implementation(compose.ui)
@@ -41,6 +42,9 @@ kotlin {
 
                 //Settings
                 implementation(libs.settings)
+
+                //DI
+                api(libs.koin.core)
             }
         }
 

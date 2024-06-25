@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import com.example.spendsense.categories.CategoriesScreen
 import com.example.spendsense.common.ui.AppTheme
 import com.example.spendsense.common.ui.AppThemeProvider
+import com.example.spendsense.di.getKoinInstance
 import com.example.spendsense.events.EventScreen
 import com.example.spendsense.root.RootViewModel
 import com.example.spendsense.root.model.AppTab
@@ -38,6 +39,11 @@ fun BoxScope.RootNavigation(selectedTab: AppTab) {
     when (selectedTab) {
         AppTab.Categories -> CategoriesScreen()
         AppTab.Events -> EventScreen()
-        AppTab.Settings -> SettingsScreen(SettingsViewModel())
+        AppTab.Settings -> SettingsScreen(
+            SettingsViewModel(
+                deviceInfo = getKoinInstance(),
+                settingsManager = getKoinInstance()
+            )
+        )
     }
 }

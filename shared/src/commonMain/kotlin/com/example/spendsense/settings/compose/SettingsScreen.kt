@@ -42,7 +42,7 @@ fun BoxScope.SettingsScreen(
             shape = RoundedCornerShape(16.dp)
         ) {
             Text(
-                state.deviceInfo,
+                state.info,
                 color = AppThemeProvider.colors.onSurface,
                 modifier = Modifier.padding(16.dp)
             )

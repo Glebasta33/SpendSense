@@ -4,12 +4,12 @@ import com.example.spendsense.base.BaseViewState
 
 class SettingsContract {
     data class State(
-        val deviceInfo: String,
+        val info: String,
         val themeIsDark: Boolean
     ): BaseViewState {
         companion object {
             val NONE = State(
-                deviceInfo = "",
+                info = "",
                 themeIsDark = false
             )
         }

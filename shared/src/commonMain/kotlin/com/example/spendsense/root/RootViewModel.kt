@@ -7,10 +7,12 @@ import com.example.spendsense.storage.SettingsManager
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class RootViewModel : BaseViewModel<RootContract.State, Nothing>() {
+class RootViewModel(
+    private val settingsManager: SettingsManager
+) : BaseViewModel<RootContract.State, Nothing>() {
 
     init {
-        SettingsManager.themeIsDarkFlow.onEach {
+        settingsManager.themeIsDarkFlow.onEach {
             updateState { copy(themeIsDark = it) }
         }.launchIn(viewModelScope)
     }
