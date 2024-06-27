@@ -1,4 +1,4 @@
-package com.example.spendsense.common.ui
+package com.example.spendsense.common.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -19,7 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.spendsense.common.ui.AppThemeProvider
+import com.example.spendsense.common.ui.theme.AppThemeProvider
 import com.example.spendsense.settings.SettingsViewModel
 import dev.icerock.moko.resources.compose.stringResource
 import com.example.spendsense.MR

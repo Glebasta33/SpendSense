@@ -9,8 +9,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.example.spendsense.categories.CategoriesScreen
-import com.example.spendsense.common.ui.AppTheme
-import com.example.spendsense.common.ui.AppThemeProvider
+import com.example.spendsense.common.ui.theme.AppTheme
+import com.example.spendsense.common.ui.theme.AppThemeProvider
 import com.example.spendsense.di.getKoinInstance
 import com.example.spendsense.events.EventScreen
 import com.example.spendsense.root.RootViewModel

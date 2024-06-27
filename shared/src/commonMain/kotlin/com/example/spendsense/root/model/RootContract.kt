@@ -1,7 +1,7 @@
 package com.example.spendsense.root.model
 
 import com.example.spendsense.base.BaseViewState
-import com.example.spendsense.common.ui.AppPrefs
+import com.example.spendsense.common.ui.theme.AppPrefs
 
 class RootContract {
 
