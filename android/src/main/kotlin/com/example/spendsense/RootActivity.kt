@@ -3,9 +3,7 @@ package com.example.spendsense
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.spendsense.di.getKoinInstance
 import com.example.spendsense.root.compose.RootScreen
-import com.example.spendsense.root.RootViewModel
 
 class RootActivity : ComponentActivity() {
 
@@ -13,7 +11,7 @@ class RootActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            RootScreen(RootViewModel(getKoinInstance()))
+            RootScreen()
         }
     }
 }

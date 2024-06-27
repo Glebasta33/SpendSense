@@ -15,12 +15,12 @@ import com.example.spendsense.di.getKoinInstance
 import com.example.spendsense.events.EventScreen
 import com.example.spendsense.root.RootViewModel
 import com.example.spendsense.root.model.AppTab
-import com.example.spendsense.settings.SettingsViewModel
 import com.example.spendsense.settings.compose.SettingsScreen
 
 @Composable
-fun RootScreen(viewModel: RootViewModel) {
+fun RootScreen() {
 
+    val viewModel = getKoinInstance<RootViewModel>()
     val state by viewModel.state.collectAsState()
 
     AppTheme(
@@ -39,11 +39,6 @@ fun BoxScope.RootNavigation(selectedTab: AppTab) {
     when (selectedTab) {
         AppTab.Categories -> CategoriesScreen()
         AppTab.Events -> EventScreen()
-        AppTab.Settings -> SettingsScreen(
-            SettingsViewModel(
-                deviceInfo = getKoinInstance(),
-                settingsManager = getKoinInstance()
-            )
-        )
+        AppTab.Settings -> SettingsScreen(getKoinInstance())
     }
 }

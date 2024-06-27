@@ -22,6 +22,7 @@ fun initKoin(
         CoreModule.deviceInfo,
         StorageModule.settings,
         platformModule,
-        appModule
+        appModule,
+        ViewModelsModule.viewModels
     )
 }
