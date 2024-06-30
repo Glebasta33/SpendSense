@@ -1,5 +1,7 @@
 package com.example.spendsense.di
 
+import com.example.spendsense.categories.CategoriesRepository
+import com.example.spendsense.categories.list.compose.CategoriesViewModel
 import com.example.spendsense.common.ui.calendar.DatePickerViewModel
 import com.example.spendsense.platform.DeviceInfo
 import com.example.spendsense.root.RootViewModel
@@ -19,10 +21,17 @@ object StorageModule {
     }
 }
 
+object RepositoriesModule {
+    val repository = module {
+        single { CategoriesRepository() }
+    }
+}
+
 object ViewModelsModule {
     val viewModels = module {
         single { RootViewModel(get()) }
         factory { SettingsViewModel(get(), get()) }
         single { DatePickerViewModel() }
+        single { CategoriesViewModel(get()) }
     }
 }
