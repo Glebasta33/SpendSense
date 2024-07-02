@@ -1,5 +1,7 @@
 package com.example.spendsense.events.model
 
+import com.example.spendsense.categories.model.Category
+import com.example.spendsense.common.ui.calendar.model.CalendarLabel
 import com.example.spendsense.extensions.now
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DateTimeUnit
@@ -41,3 +43,16 @@ data class SpendEvent(
         }
     }
 }
+
+fun SpendEvent.toUI(category: Category) = SpendEventUI(
+    id = id,
+    category = category,
+    title = title,
+    cost = cost
+)
+
+fun SpendEvent.toCalendarLabel(category: Category) = CalendarLabel(
+    id = id,
+    colorHex = category.colorHex,
+    localDate = date
+)

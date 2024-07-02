@@ -7,4 +7,5 @@
     <string name="title_category_placeholder">Title category</string>
     <string name="subtitle_category_placeholder">Subtitle category</string>
     <string name="save_button">Save</string>
+    <string name="empty_category">Empty category</string>
 </resources>

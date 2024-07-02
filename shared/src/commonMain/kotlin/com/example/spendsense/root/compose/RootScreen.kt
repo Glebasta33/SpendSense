@@ -12,7 +12,7 @@ import com.example.spendsense.categories.CategoriesScreen
 import com.example.spendsense.common.ui.theme.AppTheme
 import com.example.spendsense.common.ui.theme.AppThemeProvider
 import com.example.spendsense.di.getKoinInstance
-import com.example.spendsense.events.EventScreen
+import com.example.spendsense.events.compose.EventScreen
 import com.example.spendsense.root.RootViewModel
 import com.example.spendsense.root.model.AppTab
 import com.example.spendsense.settings.compose.SettingsScreen
@@ -38,7 +38,7 @@ fun RootScreen() {
 fun BoxScope.RootNavigation(selectedTab: AppTab) {
     when (selectedTab) {
         AppTab.Categories -> CategoriesScreen(getKoinInstance())
-        AppTab.Events -> EventScreen()
+        AppTab.Events -> EventScreen(getKoinInstance())
         AppTab.Settings -> SettingsScreen(getKoinInstance())
     }
 }
