@@ -20,7 +20,9 @@ import com.example.spendsense.common.ui.atoms.RootBox
 import com.example.spendsense.common.ui.calendar.compose.CalendarColors
 import com.example.spendsense.common.ui.calendar.compose.DatePickerView
 import com.example.spendsense.common.ui.theme.AppThemeProvider
+import com.example.spendsense.di.DatePickerSingleQualifier
 import com.example.spendsense.di.getKoinInstance
+import com.example.spendsense.events.creation.CreateEventView
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -36,7 +38,15 @@ fun BoxScope.EventScreen(
 
     ModalBottomSheetLayout(
         sheetContent = {
-            //
+           CreateEventView(
+               isExpand = sheetState.currentValue == ModalBottomSheetValue.Expanded,
+               selectedDay = state.selectedDay,
+               viewModel = getKoinInstance(),
+               createListener = {
+                   viewModel.createEvent(newEvent = it)
+                   scope.launch { sheetState.hide() }
+               }
+           )
         },
         sheetState = sheetState,
         sheetBackgroundColor = Color.Transparent,
@@ -45,7 +55,7 @@ fun BoxScope.EventScreen(
         RootBox {
             Column {
                 DatePickerView(
-                    viewModel = getKoinInstance(),
+                    viewModel = getKoinInstance(DatePickerSingleQualifier),
                     colors = CalendarColors.default.copy(
                         colorSurface = AppThemeProvider.colors.surface,
                         colorOnSurface = AppThemeProvider.colors.onSurface,
@@ -62,9 +72,8 @@ fun BoxScope.EventScreen(
                     }
                 }
             }
+            FAB { scope.launch { sheetState.show() } }
         }
-
-        FAB { scope.launch { sheetState.show() } }
     }
 
 }
