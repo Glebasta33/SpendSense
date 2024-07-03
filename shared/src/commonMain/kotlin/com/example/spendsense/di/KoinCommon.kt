@@ -24,6 +24,8 @@ fun initKoin(
         platformModule,
         appModule,
         ViewModelsModule.viewModels,
-        RepositoriesModule.repository
+        RepositoriesModule.repository,
+        StorageModule.db,
+        StorageModule.dao
     )
 }

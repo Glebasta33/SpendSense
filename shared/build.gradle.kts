@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.android.library)
     alias(libs.plugins.moko.res)
+    alias(libs.plugins.sqldelight)
 }
 
 // Плагин KMM добавляет в DSL build.gradle.kts targets и source sets.
@@ -50,11 +51,18 @@ kotlin {
 
                 //Datetime
                 implementation(libs.datetime)
+
+                //Sqldelight
+                implementation(libs.sqldelight.coroutines.extensions)
             }
         }
 
         androidMain {
             dependsOn(commonMain)
+
+            dependencies {
+                implementation(libs.sqldelight.android.driver)
+            }
         }
 
         jvmMain {
@@ -62,6 +70,7 @@ kotlin {
             dependencies {
                 // api - делает зависимость транзитивной, т.е. доступ к этой зависимости будет у модуля, у которого есть зависимость на shared
                 api(compose.desktop.currentOs)
+                implementation(libs.sqldelight.desktop.driver)
             }
         }
 
@@ -73,6 +82,10 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosX64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation(libs.sqldelight.native.driver)
+            }
         }
     }
 }
@@ -92,5 +105,14 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+sqldelight {
+    databases {
+        create("AppDb") {
+            packageName.set("com.example.spendsense.db")
+            schemaOutputDirectory.set(file("src/commonMain/sqldelight/db"))
+        }
     }
 }

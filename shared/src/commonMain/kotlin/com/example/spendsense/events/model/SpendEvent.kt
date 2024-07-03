@@ -3,13 +3,9 @@ package com.example.spendsense.events.model
 import com.example.spendsense.categories.model.Category
 import com.example.spendsense.common.ui.calendar.model.CalendarLabel
 import com.example.spendsense.extensions.now
-import kotlinx.datetime.Clock
-import kotlinx.datetime.DateTimeUnit
+import db.events.EventDb
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.plus
-import kotlinx.datetime.toLocalDateTime
 
 data class SpendEvent(
     val id: String,
@@ -31,16 +27,6 @@ data class SpendEvent(
             updateAt = LocalDateTime.now()
         )
 
-        fun getStubs() = List(20) { index ->
-            NONE.copy(
-                id = index.toString(),
-                title = "event $index",
-                date = Clock.System.now()
-                    .plus(index, DateTimeUnit.DAY, TimeZone.currentSystemDefault())
-                    .toLocalDateTime(TimeZone.currentSystemDefault())
-                    .date
-            )
-        }
     }
 }
 
@@ -55,4 +41,24 @@ fun SpendEvent.toCalendarLabel(category: Category) = CalendarLabel(
     id = id,
     colorHex = category.colorHex,
     localDate = date
+)
+
+fun SpendEvent.toDb() = EventDb(
+    id = id,
+    categoryId =  categoryId,
+    title = title,
+    cost = cost,
+    date = date,
+    createdAt = createAt,
+    updatedAt = updateAt
+)
+
+fun EventDb.toEntity() = SpendEvent(
+    id = id,
+    categoryId =  categoryId,
+    title = title.orEmpty(),
+    cost = cost ?: 0.0,
+    date = date,
+    createAt = createdAt,
+    updateAt = updatedAt
 )

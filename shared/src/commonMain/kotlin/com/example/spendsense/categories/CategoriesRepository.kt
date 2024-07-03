@@ -1,20 +1,13 @@
 package com.example.spendsense.categories
 
 import com.example.spendsense.categories.model.Category
-import kotlinx.coroutines.flow.flow
+import com.example.spendsense.categories.model.CategoryDao
 
-class CategoriesRepository {
+class CategoriesRepository(
+    private val categoryDao: CategoryDao
+) {
 
-    fun getAllFlow() = flow {
-        emit(
-            List(20) { i ->
-                Category.NONE.copy(
-                    id = i.toString(),
-                    title = "Category $i"
-                )
-            }
-        )
-    }
+    fun getAllFlow() = categoryDao.getAllFlow()
 
-    suspend fun createCategory(category: Category) = Unit
+    suspend fun createCategory(category: Category) = categoryDao.insert(category)
 }

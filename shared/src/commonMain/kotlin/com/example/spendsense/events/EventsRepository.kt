@@ -1,12 +1,14 @@
 package com.example.spendsense.events
 
 import com.example.spendsense.events.model.SpendEvent
-import kotlinx.coroutines.flow.flow
+import com.example.spendsense.events.model.SpendEventDao
 
-class EventsRepository {
+class EventsRepository(
+    private val dao: SpendEventDao
+) {
 
-    fun getAllFlow() = flow { emit(SpendEvent.getStubs()) }
+    fun getAllFlow() = dao.getAllFlow()
 
-    fun create(spendEvent: SpendEvent) = Unit
+    suspend fun create(spendEvent: SpendEvent) = dao.insert(spendEvent)
 
 }
