@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_timestamps_datetimes",
+  "info": {
+    "displayName": "Datetime",
+    "icon": "calendar",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "createdAtLocal": {
+      "type": "datetime"
+    }
+  }
+}
