@@ -8,12 +8,14 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "idlocal": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "title": {
       "type": "string"
@@ -21,7 +23,7 @@
     "description": {
       "type": "string"
     },
-    "createAtLocal": {
+    "createdAtLocal": {
       "type": "datetime"
     },
     "updatedAtLocal": {
@@ -31,7 +33,7 @@
       "type": "string"
     },
     "userId": {
-      "type": "string"
+      "type": "biginteger"
     }
   }
 }

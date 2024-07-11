@@ -362,82 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'Category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    idlocal: Attribute.String;
-    title: Attribute.String;
-    description: Attribute.String;
-    createAtLocal: Attribute.DateTime;
-    updatedAtLocal: Attribute.DateTime;
-    colorHex: Attribute.String;
-    userId: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSpendEventSpendEvent extends Schema.CollectionType {
-  collectionName: 'spend_events';
-  info: {
-    singularName: 'spend-event';
-    pluralName: 'spend-events';
-    displayName: 'SpendEvent';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    idlocal: Attribute.String;
-    title: Attribute.String;
-    categoryId: Attribute.String;
-    cost: Attribute.Decimal;
-    date: Attribute.DateTime;
-    note: Attribute.String;
-    createdAtLocal: Attribute.DateTime;
-    updatedAtLocal: Attribute.DateTime;
-    userId: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::spend-event.spend-event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::spend-event.spend-event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -864,6 +788,80 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    idlocal: Attribute.String & Attribute.Required & Attribute.Unique;
+    title: Attribute.String;
+    description: Attribute.String;
+    createdAtLocal: Attribute.DateTime;
+    updatedAtLocal: Attribute.DateTime;
+    colorHex: Attribute.String;
+    userId: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSpendEventSpendEvent extends Schema.CollectionType {
+  collectionName: 'spend_events';
+  info: {
+    singularName: 'spend-event';
+    pluralName: 'spend-events';
+    displayName: 'SpendEvent';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    idlocal: Attribute.String;
+    title: Attribute.String;
+    categoryId: Attribute.String;
+    cost: Attribute.Decimal;
+    date: Attribute.DateTime;
+    note: Attribute.String;
+    createdAtLocal: Attribute.DateTime;
+    updatedAtLocal: Attribute.DateTime;
+    userId: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::spend-event.spend-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::spend-event.spend-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -874,8 +872,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::category.category': ApiCategoryCategory;
-      'api::spend-event.spend-event': ApiSpendEventSpendEvent;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -884,6 +880,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::category.category': ApiCategoryCategory;
+      'api::spend-event.spend-event': ApiSpendEventSpendEvent;
     }
   }
 }
